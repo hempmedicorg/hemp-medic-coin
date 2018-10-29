@@ -1,0 +1,30 @@
+{
+	"Creation": {
+		"codeDepositCost": "1115800",
+		"executionCost": "infinite",
+		"totalCost": "infinite"
+	},
+	"External": {
+		"": "509",
+		"_totalSupply()": "496",
+		"acceptOwnership()": "43345",
+		"allowance(address,address)": "1025",
+		"approve(address,uint256)": "22320",
+		"approveAndCall(address,uint256,bytes)": "infinite",
+		"balanceOf(address)": "661",
+		"decimals()": "522",
+		"name()": "infinite",
+		"newOwner()": "764",
+		"owner()": "610",
+		"safeAdd(uint256,uint256)": "693",
+		"safeDiv(uint256,uint256)": "583",
+		"safeMul(uint256,uint256)": "663",
+		"safeSub(uint256,uint256)": "517",
+		"symbol()": "infinite",
+		"totalSupply()": "734",
+		"transfer(address,uint256)": "43305",
+		"transferAnyERC20Token(address,uint256)": "infinite",
+		"transferFrom(address,address,uint256)": "infinite",
+		"transferOwnership(address)": "21131"
+	}
+}
