@@ -1,12 +1,12 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.4.18;
 
 // ----------------------------------------------------------------------------
-// 'HempDollar' token contract
+// 'HempMedic Coin' token contract
 //
-// Deployed to : 0x658D1aEaeddE5E9aD1b39d4ac2A3392da6CE39Ce
-// Symbol      : HD
-// Name        : HempDollar
-// Total supply: 2200000000000000
+// Deployed to : 0xbDCB1ca7807b935E5B7aDD0Df2194c915AbDc67B
+// Symbol      : HMMC
+// Name        : HempMedic Coin
+// Total supply: 2200000000000000000
 // Decimals    : 8
 //
 // Enjoy.
@@ -74,7 +74,7 @@ contract Owned {
 
     event OwnershipTransferred(address indexed _from, address indexed _to);
 
-    constructor() public {
+    function Owned() public {
         owner = msg.sender;
     }
 
@@ -88,7 +88,7 @@ contract Owned {
     }
     function acceptOwnership() public {
         require(msg.sender == newOwner);
-        emit OwnershipTransferred(owner, newOwner);
+        OwnershipTransferred(owner, newOwner);
         owner = newOwner;
         newOwner = address(0);
     }
@@ -99,7 +99,7 @@ contract Owned {
 // ERC20 Token, with the addition of symbol, name and decimals and assisted
 // token transfers
 // ----------------------------------------------------------------------------
-contract HempDollarToken is ERC20Interface, Owned, SafeMath {
+contract HempMedicToken is ERC20Interface, Owned, SafeMath {
     string public symbol;
     string public  name;
     uint8 public decimals;
@@ -112,13 +112,13 @@ contract HempDollarToken is ERC20Interface, Owned, SafeMath {
     // ------------------------------------------------------------------------
     // Constructor
     // ------------------------------------------------------------------------
-    constructor() public {
-        symbol = "HD";
-        name = "HempDollar";
+    function HempMedicToken() public {
+        symbol = "HMMC";
+        name = "HempMedic Coin";
         decimals = 8;
-        _totalSupply = 2200000000000000;
-        balances[0x658D1aEaeddE5E9aD1b39d4ac2A3392da6CE39Ce] = _totalSupply;
-        emit Transfer(address(0), 0x658D1aEaeddE5E9aD1b39d4ac2A3392da6CE39Ce, _totalSupply);
+        _totalSupply = 2200000000000000000;
+        balances[0xbDCB1ca7807b935E5B7aDD0Df2194c915AbDc67B] = _totalSupply;
+        Transfer(address(0), 0xbDCB1ca7807b935E5B7aDD0Df2194c915AbDc67B, _totalSupply);
     }
 
 
@@ -126,7 +126,7 @@ contract HempDollarToken is ERC20Interface, Owned, SafeMath {
     // Total supply
     // ------------------------------------------------------------------------
     function totalSupply() public constant returns (uint) {
-        return _totalSupply  - balances[address(0)];
+        return _totalSupply - balances[address(0)];
     }
 
 
@@ -146,7 +146,7 @@ contract HempDollarToken is ERC20Interface, Owned, SafeMath {
     function transfer(address to, uint tokens) public returns (bool success) {
         balances[msg.sender] = safeSub(balances[msg.sender], tokens);
         balances[to] = safeAdd(balances[to], tokens);
-        emit Transfer(msg.sender, to, tokens);
+        Transfer(msg.sender, to, tokens);
         return true;
     }
 
@@ -161,7 +161,7 @@ contract HempDollarToken is ERC20Interface, Owned, SafeMath {
     // ------------------------------------------------------------------------
     function approve(address spender, uint tokens) public returns (bool success) {
         allowed[msg.sender][spender] = tokens;
-        emit Approval(msg.sender, spender, tokens);
+        Approval(msg.sender, spender, tokens);
         return true;
     }
 
@@ -179,7 +179,7 @@ contract HempDollarToken is ERC20Interface, Owned, SafeMath {
         balances[from] = safeSub(balances[from], tokens);
         allowed[from][msg.sender] = safeSub(allowed[from][msg.sender], tokens);
         balances[to] = safeAdd(balances[to], tokens);
-        emit Transfer(from, to, tokens);
+        Transfer(from, to, tokens);
         return true;
     }
 
@@ -200,7 +200,7 @@ contract HempDollarToken is ERC20Interface, Owned, SafeMath {
     // ------------------------------------------------------------------------
     function approveAndCall(address spender, uint tokens, bytes data) public returns (bool success) {
         allowed[msg.sender][spender] = tokens;
-        emit Approval(msg.sender, spender, tokens);
+        Approval(msg.sender, spender, tokens);
         ApproveAndCallFallBack(spender).receiveApproval(msg.sender, tokens, this, data);
         return true;
     }
